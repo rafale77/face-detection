@@ -204,13 +204,8 @@ class RetinaFace(nn.Module):
         """
         super(RetinaFace, self).__init__()
         self.phase = phase
-        backbone = None
-        if cfg["name"] == "mobilenet0.25":
-            backbone = MobileNetV1()
-        elif cfg["name"] == "Resnet50":
-            import torchvision.models as models
-
-            backbone = models.resnet50(pretrained=cfg["pretrain"])
+        import torchvision.models as models
+        backbone = models.resnet50(pretrained=cfg["pretrain"])
 
         self.body = _utils.IntermediateLayerGetter(backbone, cfg["return_layers"])
         in_channels_stage2 = cfg["in_channel"]
@@ -376,27 +371,6 @@ class PriorBox(object):
         if self.clip:
             output.clamp_(max=1, min=0)
         return output
-
-
-cfg_mnet = {
-    "name": "mobilenet0.25",
-    "min_sizes": [[16, 32], [64, 128], [256, 512]],
-    "steps": [8, 16, 32],
-    "variance": [0.1, 0.2],
-    "clip": False,
-    "loc_weight": 2.0,
-    "gpu_train": True,
-    "batch_size": 32,
-    "ngpu": 1,
-    "epoch": 250,
-    "decay1": 190,
-    "decay2": 220,
-    "image_size": 640,
-    "pretrain": True,
-    "return_layers": {"stage1": 1, "stage2": 2, "stage3": 3},
-    "in_channel": 32,
-    "out_channel": 64,
-}
 
 cfg_re50 = {
     "name": "Resnet50",
