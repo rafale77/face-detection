@@ -17,11 +17,7 @@ While not required, for optimal performance it is highly recommended to run the 
 The easiest way to install it is using pip:
 
 ```bash
-pip install face-detection
-```
-or
-```bash
-pip install git+https://github.com/elliottzheng/face-detection.git@master
+pip3 install git+https://github.com/rafale77/face-detection.git@master
 ```
 
 ## Usage
