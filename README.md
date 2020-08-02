@@ -46,23 +46,6 @@ detector = RetinaFace(gpu_id=0)
 | SPF  | 0.022714852809906007         | 0.010347620010375976            | 0.0647138786315918                            |
 
 
-##### Batch input for faster detection
-
-All the input images must of the same size.
-
-**Detector with CUDA process batch input faster than the same amount of single input.** 
-
-```python
-from skimage import io
-from face_detection import RetinaFace
-
-detector = RetinaFace()
-img= io.imread('examples/obama.jpg')
-all_faces = detector([img,img]) # return faces list of all images
-box, landmarks, score = all_faces[0][0]
-```
-
-![](./images/gpu_batch.png)
 
 ## Reference
 
