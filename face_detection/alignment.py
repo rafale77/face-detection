@@ -428,9 +428,8 @@ def load_model(model, pretrained_path, load_to_cpu):
 
 def load_net(model_path, device, network):
 
-    cfg = cfg_re50
     # net and model
-    net = RetinaFace(cfg=cfg, phase="test")
+    net = RetinaFace(cfg=cfg_re50, phase="test")
     net = load_model(net, model_path, True)
     net.eval()
     cudnn.benchmark = True
